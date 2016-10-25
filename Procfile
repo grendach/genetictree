@@ -1,3 +1,1 @@
-web: python website/manage.py runserver 0.0.0.0:$PORT --noreload
-
-
+web: gunicorn tree.wsgi --log-file-
