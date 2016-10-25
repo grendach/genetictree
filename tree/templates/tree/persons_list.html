@@ -1,0 +1,36 @@
+        {% extends 'tree/base.html' %}
+        {% block site_body %}
+            <div class="col-xs-14 col-md-9">
+          <h1 >All persons: </h1>
+
+            {% if all_persons %}
+                {% for person in all_persons %}
+
+                  <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="thumbnail">
+
+                                  <a href="{% url 'tree:persons' %}">
+                                                    <img src="{{ person.person_photo.url }}" alt="Generic placeholder image" width="250" height="250" class="img-circle">
+                                                </a>
+
+
+
+                                                    <h2>{{ person.first_name}}</h2>
+                                                    <h2>{{person.date_of_birth }}</h2>
+                                                    <h4>Родина: {{ person.family }} </h4>
+
+                                                    <!-- View Details -->
+                                                    <a href="{% url 'tree:person_detail' person.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+
+                                                    <!-- Edit Person Data -->
+                                                    <button type="submit" class="btn btn-default btn-sm">
+                                                        <a href="{% url 'tree:person_update' person.id %}" class="glyphicon glyphicon-wrench"></a>
+                                    </div><!-- /.col-lg-4 -->
+
+                                </div><!-- /.row -->
+                        {% endfor %}
+                    {% endif %}
+                    </div>
+            </div>
+        {% endblock %}

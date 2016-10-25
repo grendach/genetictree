@@ -1,0 +1,63 @@
+{% extends 'tree/base.html' %}
+{% load static %}
+
+{% block site_body %}
+
+    <div class="col-xs-12 col-md-8"><h2>{{ person.first_name }} {{ person.family }}</h2>
+
+          <div class="row featurette">
+                    <div class="col-md-7 col-md-push-5">
+                      <h2 class="featurette-heading">
+                          <span class="text-muted">
+                                {% for person in family.person_set.all %}
+                                    {{ person.first_name }}
+                                    {{person.second_name}}
+                                    ({{person.date_of_birth}})
+                                {% endfor %}
+                          </span>
+                      </h2>
+                        <h2 class="featurette-heading">Короткі біографічні відомості:</h2>
+                      <p class="lead">{{ person.person_descr }}</p>
+                    </div>
+                    <div class="col-md-3 col-md-pull-7">
+                        <a href="{% url 'tree:person_detail' person.id %}">
+                                    {% if person.person_photo %}
+                                        <img src="{{ person.person_photo.url }}" class="img-responsive">
+                                    {% else %}
+                                        <h3>No image to display</h3>
+                                    {% endif %}
+                        </a>
+
+
+                    </div>
+          </div>
+    </div>
+    <div class="col-xs-12 col-md-8"><h2>{{ person.date_of_birth }}</h2> </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
