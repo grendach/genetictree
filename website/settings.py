@@ -120,7 +120,7 @@ MEDIA_URL = '/media/'
 
 #settings for Heroku uploading
 PROJECT_ROOT = os.path.dirname(__file__)
-STATIC_ROOT = os.path.join(PROJECT_ROOT, '/static/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles/')
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 
