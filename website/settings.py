@@ -119,10 +119,10 @@ MEDIA_URL = '/media/'
 
 
 #settings for Heroku uploading
-#PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles/')
+PROJECT_ROOT = os.path.dirname(__file__)
+STATIC_ROOT = os.path.join(PROJECT_ROOT, '/static/')
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
 
 
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
