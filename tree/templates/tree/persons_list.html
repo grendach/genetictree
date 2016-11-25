@@ -1,36 +1,50 @@
         {% extends 'tree/base.html' %}
         {% block site_body %}
-            <div class="col-xs-14 col-md-9">
-          <h1 >Мої родичі: </h1>
+
+
 
             {% if all_persons %}
                 {% for person in all_persons %}
 
-                  <div class="row">
-                                <div class="col-lg-3">
-                                    <div class="thumbnail">
+                  <div class="bs-example" data-example-id="thumbnails-with-custom-content">
+                      <div class="col-sm-6 col-md-4">
+                          <div class="well">
 
-                                  <a href="{% url 'tree:persons' %}">
+
+                                                <h2>{{ person.first_name}}</h2>
+                                                  <a href="{% url 'tree:persons' %}">
                                                     <img src="{{ person.person_photo.url }}" alt="Generic placeholder image" width="250" height="250" class="img-circle">
-                                                </a>
+                                                  </a>
 
 
 
-                                                    <h2>{{ person.first_name}}</h2>
-                                                    <h2>{{person.date_of_birth }}</h2>
-                                                    <h4>Родина: {{ person.family }} </h4>
 
-                                                    <!-- View Details -->
-                                                    <a href="{% url 'tree:person_detail' person.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                                                  <h2>{{person.date_of_birth }}</h2>
+                                                  <h4>Родина: {{ person.family }} </h4>
 
-                                                    <!-- Edit Person Data -->
-                                                    <button type="submit" class="btn btn-default btn-sm">
-                                                        <a href="{% url 'tree:person_update' person.id %}" class="glyphicon glyphicon-wrench"></a>
-                                    </div><!-- /.col-lg-4 -->
+                                                  <!-- View Details -->
+                                                  <a href="{% url 'tree:person_detail' person.id %}" class="btn btn-primary btn-sm" role="button">Деталi</a>
 
-                                </div><!-- /.row -->
+                                                  <!-- Edit Person Data -->
+                                                  <button type="submit" class="btn btn-default btn-sm">
+                                                  <a href="{% url 'tree:person_update' person.id %}" class="glyphicon glyphicon-wrench"></a>
+
+                                                  <!-- Delete Person -->
+                                                  <form action="{% url 'tree:person_delete' person.id %}" method="post" style="display: inline;">
+                                                      {% csrf_token %}
+                                                      <input type="hidden" name="person_id" value="{{ person.id }}"/>
+                                                          <button type="submit" class="btn btn-default btn-sm">
+                                                              <span class=" glyphicon glyphicon-trash"></span>
+                                                          </button>
+                                                  </form>
+
+                          </div>
+                      </div>
+                  </div>
+
+
                         {% endfor %}
                     {% endif %}
                     </div>
-            </div>
+
         {% endblock %}

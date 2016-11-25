@@ -1,15 +1,16 @@
-
+from django.contrib.auth import views as auth_views
 from django.conf.urls import url
 from . import views
 
 app_name = 'tree'
 
 urlpatterns = [
+
     #/tree/HomePage
-    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'tree/$', views.IndexView.as_view(), name='index'),
 
     #tree/register/  For registartion of the users
-    url(r'^register/$', views.UserFormView.as_view(), name='register'),
+    url(r'register/$', views.UserFormView.as_view(), name='register'),
 
     #/tree/Person
     url(r'persons/$', views.PersonView.as_view(), name='persons'),
@@ -39,6 +40,12 @@ urlpatterns = [
     url(r'persons/(?P<pk>[0-9]+)/delete/$', views.PersonDelete.as_view(), name='person_delete'),
 
 
+
+    #logout Page
+    url(r'logout/$', auth_views.logout, {'template_name': 'logout.html'}, name='logout'),
+
+    #login Page
+    url(r'^', auth_views.login, name='login'),
 
 
 

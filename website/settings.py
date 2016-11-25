@@ -70,7 +70,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'website.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
 
 DATABASES = {
     'default': {
@@ -136,3 +136,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+#home page after successful authentication
+LOGIN_REDIRECT_URL = 'tree:index'
+LOGOUT_REDIRECT_URL = 'tree:logout'

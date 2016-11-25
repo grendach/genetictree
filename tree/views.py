@@ -1,5 +1,5 @@
 from django.views import generic
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.core.urlresolvers import reverse_lazy
@@ -16,6 +16,16 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Family.objects.all()
+
+#View login Page
+
+class LoginView(View):
+    success_url = reverse_lazy('registration:login')
+
+#View logout Page
+
+class LogoutView(View):
+    success_url = reverse_lazy('registration:login')
 
 #View of Persons List
 class PersonView(generic.ListView):
@@ -42,7 +52,7 @@ class FamilyCreate(CreateView):
 #View of Create Person form
 class PersonCreate(CreateView):
     model = Person
-    fields = ['family', 'first_name', 'second_name', 'person_photo', 'date_of_birth', 'date_of_death', 'lives_in', 'is_married']
+    fields = ['family', 'first_name', 'second_name', 'person_photo', 'date_of_birth', 'person_descr', 'date_of_death', 'lives_in', 'is_married']
 
 #View of Update Family form
 class FamilyUpdate(UpdateView):
@@ -58,11 +68,14 @@ class PersonUpdate(UpdateView):
 class FamilyDelete(DeleteView):
     model = Family
     success_url = reverse_lazy('tree:index')
+
+
 #View of Delete Person form
 class PersonDelete(DeleteView):
     model = Person
     success_url = reverse_lazy('tree:persons')
 
+#View for register User
 class UserFormView(View):
     from_class = UserForm
     template_name = 'tree/registration_from.html'
@@ -72,7 +85,7 @@ class UserFormView(View):
         form = self.from_class(None)
         return render(request, self.template_name, {'form': form})
 
-    # process from data
+    # process form data
     def post(self, request):
         form = self.from_class(request.POST)
 
@@ -83,6 +96,8 @@ class UserFormView(View):
             #Cleaned (normalized) data
 
             username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
             password = form.cleaned_data['password']
             user.set_password(password)
             user.save()

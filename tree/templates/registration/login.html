@@ -1,0 +1,28 @@
+
+{% extends 'registration/startpage.html' %}
+{% block title %}Login{% endblock %}
+
+{% block site_body %}
+  <div class="bs-example" data-example-id="thumbnails-with-custom-content">
+                      <div class="col-sm-6 col-md-4">
+                          <div class="well">
+
+
+                            <h2>Login</h2>
+
+                                  <form method="post">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <button type="submit" class="btn btn-primary btn-sm" role="button">Login</button>
+                                  </form>
+                                      <a href="{% url 'tree:register'%}" class="btn btn-primary btn-sm" role="button">Register</a>
+
+
+                          </div>
+
+                      </div>
+      {% load static %}
+  <img src="{% static "tree/images/family-tree-icons.jpg" %}" alt="Generic placeholder image" width="400" height="400" class="img-rounded">
+  </div>
+
+{% endblock %}
