@@ -30,7 +30,7 @@
                                                   <a href="{% url 'tree:person_update' person.id %}" class="glyphicon glyphicon-wrench"></a>
 
                                                   <!-- Delete Person -->
-                                                  <form action="{% url 'tree:person_delete' person.id %}" method="post" style="display: inline;">
+                                                  <form action="#" method="post" style="display: inline;">
                                                       {% csrf_token %}
                                                       <input type="hidden" name="person_id" value="{{ person.id }}"/>
                                                           <button type="submit" class="btn btn-default btn-sm">

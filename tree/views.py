@@ -2,10 +2,25 @@ from django.views import generic
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User ,Group, Permission
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import View
 from .models import Family, Person
 from .forms import UserForm
+
+'''
+content_type = ContentType.objects.get_for_model(Family, Person)
+permission = Permission.objects.create(
+    codename = 'can_publish',
+    name = 'Can create',
+    content_type = content_type
+)
+user = User.objects.get(username='greg')
+group = Group.objects.get(name='ADD_group')
+group.permissions.add(permission)
+user.groups.add(group)
+'''
 
 
 

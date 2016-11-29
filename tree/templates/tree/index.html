@@ -27,7 +27,7 @@
                                         <a href="{% url 'tree:family_update' family.id %}" class="glyphicon glyphicon-wrench"></a>
 
                                         <!-- Delete Family -->
-                                        <form action="{% url 'tree:family_delete' family.id %}" method="post" style="display: inline;">
+                                        <form action="#" method="post" style="display: inline;">
                                             {% csrf_token %}
                                             <input type="hidden" name="family_id" value="{{ family.id }}"/>
                                                 <button type="submit" class="btn btn-default btn-sm">
