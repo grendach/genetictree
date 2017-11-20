@@ -1,0 +1,12 @@
+<h1> Spent on {{ category.category_name }}: </h1>
+
+<ul>
+    {% for expense in category.expense_set.all%}
+
+            <li> {{expense.expense_date }} - {{ expense.expense_amount }} {{ expense.expense_currency }}  </li>
+
+
+
+
+    {% endfor %}
+</ul>

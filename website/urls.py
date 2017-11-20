@@ -7,9 +7,11 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('tree.urls')),
-
+    url(r'^wallet/', include('wallet.urls')),
     url(r'^tree/', include('tree.urls')),
+    
+
+
 ]
 
 if settings.DEBUG:

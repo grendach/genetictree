@@ -1,9 +1,19 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from .models import Family, Person
 from django import forms
 
+'''
 
+content_type = ContentType.objects.get_for_model(Family, Person)
+permission = Permission.objects.create(
+    codename='can_add',
+    name='Can Add Person or Family',
+    content_type=content_type,
+)
 
-from .models import Family, Person
+'''
+
 
 
 class FamilyForm(forms.ModelForm):

@@ -1,0 +1,11 @@
+{% if all_categories %}
+    <h3>Here are all my expenses:</h3>
+
+    <ul>
+        {% for category in all_categories  %}
+        <li><a href="/wallet/{{ category.id }}">{{ category.category_name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>You don't have any expense yet</h3>
+{% endif %}
